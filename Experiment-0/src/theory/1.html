@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Lecture 1 – Modern Front-End Architecture & SPA Concepts</title>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.7;
+      margin: 40px;
+      background-color: #ffffff;
+      color: #222222;
+    }
+    h1, h2, h3 {
+      color: #1f3a5f;
+    }
+    h1 {
+      border-bottom: 2px solid #1f3a5f;
+      padding-bottom: 10px;
+    }
+    ul {
+      margin-left: 25px;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 20px 0;
+    }
+    table, th, td {
+      border: 1px solid #555;
+    }
+    th, td {
+      padding: 10px;
+      text-align: left;
+    }
+    th {
+      background-color: #f0f4f8;
+    }
+    hr {
+      margin: 40px 0;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Experiment No. 1</h1>
+<h2>Create a Basic SPA using a Modern Front-End Framework</h2>
+
+<h3>Lecture No. 1: Modern Front-End Architecture & SPA Concepts</h3>
+
+<hr />
+
+<h2>1. Introduction</h2>
+<p>
+Modern web applications are expected to be fast, interactive, and user-friendly.
+Traditional web architectures struggle to meet these expectations. As a result,
+modern front-end frameworks and Single Page Application (SPA) architecture have become
+industry standards.
+</p>
+
+<hr />
+
+<h2>2. Traditional Multi-Page Applications (MPA)</h2>
+<p>
+In a Multi-Page Application, each user request results in a full page reload.
+The server generates a new HTML page for every navigation or form submission.
+</p>
+
+<h3>Characteristics of MPAs</h3>
+<ul>
+  <li>Full page reload on every request</li>
+  <li>Server-side rendering of HTML</li>
+  <li>Tightly coupled frontend and backend</li>
+  <li>Slower user experience for interactive systems</li>
+</ul>
+
+<p><strong>Request Flow:</strong></p>
+<p>
+User Action → Server Request → HTML Response → Full Page Reload
+</p>
+
+<hr />
+
+<h2>3. Single Page Applications (SPA)</h2>
+
+<h3>3.1 What is a SPA?</h3>
+<p>
+A Single Page Application loads a single HTML page once and dynamically updates the
+content using JavaScript without reloading the entire page. Only data is exchanged
+with the server, usually in JSON format.
+</p>
+
+<h3>3.2 SPA Request Flow</h3>
+<p>
+Initial Load:<br />
+Browser → index.html + JavaScript bundle
+</p>
+<p>
+After Initial Load:<br />
+User Action → JavaScript Logic → Optional API Call → UI Update
+</p>
+
+<h3>3.3 Key Characteristics of SPAs</h3>
+<ul>
+  <li>Single HTML entry point</li>
+  <li>Client-side routing</li>
+  <li>API-driven backend communication</li>
+  <li>Faster navigation and better UX</li>
+</ul>
+
+<hr />
+
+<h2>4. Modern Front-End Architecture</h2>
+
+<h3>4.1 Component-Based Architecture</h3>
+<p>
+Modern front-end frameworks break the UI into reusable components. Each component
+encapsulates its structure, logic, and behavior.
+</p>
+
+<h3>Benefits of Component-Based Design</h3>
+<ul>
+  <li>Reusability</li>
+  <li>Modularity</li>
+  <li>Easier maintenance</li>
+  <li>Improved scalability</li>
+</ul>
+
+<hr />
+
+<h3>4.2 Separation of Concerns</h3>
+<p>
+Modern front-end applications separate responsibilities across layers to improve
+maintainability and clarity.
+</p>
+
+<table>
+  <tr>
+    <th>Layer</th>
+    <th>Responsibility</th>
+  </tr>
+  <tr>
+    <td>UI Components</td>
+    <td>Rendering and user interaction</td>
+  </tr>
+  <tr>
+    <td>Routing</td>
+    <td>Navigation and page mapping</td>
+  </tr>
+  <tr>
+    <td>State Management</td>
+    <td>Application data handling</td>
+  </tr>
+  <tr>
+    <td>Services</td>
+    <td>API communication</td>
+  </tr>
+</table>
+
+<hr />
+
+<h2>5. Modern Front-End Frameworks</h2>
+<p>
+As applications grow in complexity, managing UI updates using plain JavaScript
+becomes difficult. Modern frameworks provide structure, efficiency, and scalability.
+</p>
+
+<table>
+  <tr>
+    <th>Framework</th>
+    <th>Type</th>
+  </tr>
+  <tr>
+    <td>React</td>
+    <td>Component-based library</td>
+  </tr>
+  <tr>
+    <td>Angular</td>
+    <td>Full-featured framework</td>
+  </tr>
+  <tr>
+    <td>Vue</td>
+    <td>Progressive framework</td>
+  </tr>
+</table>
+
+<p>
+For this course, <strong>React</strong> is used because it aligns with the MERN stack
+and is widely adopted in the industry.
+</p>
+
+<hr />
+
+<h2>6. Client-Side Routing</h2>
+<p>
+In SPAs, routing is handled on the client side. Changing the URL does not reload
+the page. Instead, the framework decides which component to render.
+</p>
+
+<p><strong>Example Routes:</strong></p>
+<ul>
+  <li>/ → Home Component</li>
+  <li>/about → About Component</li>
+  <li>/contact → Contact Component</li>
+</ul>
+
+<hr />
+
+<h2>7. Entry Point of a SPA</h2>
+<p>
+A SPA has a single HTML entry file, usually <code>index.html</code>, containing a root
+DOM element. The JavaScript framework mounts the application into this root element.
+</p>
+
+<hr />
+
+<h2>8. Advantages of SPA Architecture</h2>
+<ul>
+  <li>Fast navigation without page reload</li>
+  <li>Better user experience</li>
+  <li>Decoupled frontend and backend</li>
+  <li>Reusable UI components</li>
+</ul>
+
+<hr />
+
+<h2>9. Limitations of SPAs</h2>
+<ul>
+  <li>Higher initial load time</li>
+  <li>SEO challenges</li>
+  <li>Heavy reliance on JavaScript</li>
+</ul>
+
+<p>
+These limitations are addressed later using techniques such as code splitting,
+server-side rendering, and Progressive Web Apps.
+</p>
+
+<hr />
+
+<h2>10. Learning Outcomes</h2>
+<p>After this lecture, students should be able to:</p>
+<ul>
+  <li>Explain SPA architecture</li>
+  <li>Differentiate SPA and MPA</li>
+  <li>Understand modern front-end architecture</li>
+  <li>Identify the entry point of a SPA</li>
+</ul>
+
+<hr />
+
+<h2>End of Lecture 1</h2>
+
+</body>
+</html>
+
