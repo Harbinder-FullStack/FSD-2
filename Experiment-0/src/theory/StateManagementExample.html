@@ -1,0 +1,192 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>React State Management – With Explanations</title>
+<style>
+body {font-family: Arial; margin:40px; line-height:1.6;}
+h1,h2,h3 {color:#2c3e50;}
+code {background:#f4f4f4; padding:10px; display:block; margin:10px 0;}
+.note {background:#e8f4fd; padding:10px; border-left:4px solid #3498db;}
+table {border-collapse: collapse; width:100%;}
+th, td {border:1px solid #ccc; padding:8px; text-align:center;}
+th {background:#eee;}
+</style>
+</head>
+<body>
+
+<h1>React State Management – Simple Examples</h1>
+<p><b>Common Scenario:</b> Counter App (Increase / Decrease)</p>
+
+<hr>
+
+<h2>1. useState (Local State)</h2>
+
+<code>
+import { useState } from "react";
+
+function App() {
+  const [count, setCount] = useState(0);
+
+  return (
+    &lt;div&gt;
+      &lt;h3&gt;Count: {count}&lt;/h3&gt;
+      &lt;button onClick={() =&gt; setCount(count + 1)}&gt;Increase&lt;/button&gt;
+      &lt;button onClick={() =&gt; setCount(count - 1)}&gt;Decrease&lt;/button&gt;
+    &lt;/div&gt;
+  );
+}
+</code>
+
+<div class="note">
+<b>Explanation:</b>
+<ul>
+<li><b>useState(0)</b> → Initializes state with value 0</li>
+<li><b>count</b> → Current state value</li>
+<li><b>setCount()</b> → Function to update state</li>
+<li>When button is clicked, state updates and UI re-renders</li>
+<li>Used for <b>local component state</b></li>
+</ul>
+</div>
+
+<hr>
+
+<h2>2. Context API (Global State)</h2>
+
+<h3>CounterContext.js</h3>
+<code>
+import { createContext, useState } from "react";
+
+export const CounterContext = createContext();
+
+export function CounterProvider({ children }) {
+  const [count, setCount] = useState(0);
+
+  return (
+    &lt;CounterContext.Provider value={{ count, setCount }}&gt;
+      {children}
+    &lt;/CounterContext.Provider&gt;
+  );
+}
+</code>
+
+<div class="note">
+<b>Explanation:</b>
+<ul>
+<li><b>createContext()</b> → Creates global state container</li>
+<li><b>CounterProvider</b> → Supplies state to all components</li>
+<li><b>value</b> → Data shared globally</li>
+<li><b>{children}</b> → All wrapped components</li>
+</ul>
+</div>
+
+<h3>App.js</h3>
+<code>
+import { useContext } from "react";
+import { CounterContext } from "./CounterContext";
+
+function App() {
+  const { count, setCount } = useContext(CounterContext);
+
+  return (
+    &lt;div&gt;
+      &lt;h3&gt;Count: {count}&lt;/h3&gt;
+      &lt;button onClick={() =&gt; setCount(count + 1)}&gt;Increase&lt;/button&gt;
+      &lt;button onClick={() =&gt; setCount(count - 1)}&gt;Decrease&lt;/button&gt;
+    &lt;/div&gt;
+  );
+}
+</code>
+
+<div class="note">
+<b>Explanation:</b>
+<ul>
+<li><b>useContext()</b> → Access global state</li>
+<li>No need to pass props (avoids prop drilling)</li>
+<li>Used for <b>medium-sized applications</b></li>
+</ul>
+</div>
+
+<hr>
+
+<h2>3. Redux (Central Store)</h2>
+
+<h3>store.js</h3>
+<code>
+import { createStore } from "redux";
+
+const initialState = { count: 0 };
+
+function reducer(state = initialState, action) {
+  switch(action.type) {
+    case "INCREMENT":
+      return { count: state.count + 1 };
+    case "DECREMENT":
+      return { count: state.count - 1 };
+    default:
+      return state;
+  }
+}
+
+export const store = createStore(reducer);
+</code>
+
+<div class="note">
+<b>Explanation:</b>
+<ul>
+<li><b>store</b> → Central state storage</li>
+<li><b>reducer</b> → Controls how state changes</li>
+<li><b>action.type</b> → Tells what to do</li>
+<li>Redux follows <b>one-way data flow</b></li>
+</ul>
+</div>
+
+<h3>App.js</h3>
+<code>
+import { useDispatch, useSelector } from "react-redux";
+
+function App() {
+  const count = useSelector(state =&gt; state.count);
+  const dispatch = useDispatch();
+
+  return (
+    &lt;div&gt;
+      &lt;h3&gt;Count: {count}&lt;/h3&gt;
+      &lt;button onClick={() =&gt; dispatch({type:"INCREMENT"})}&gt;Increase&lt;/button&gt;
+      &lt;button onClick={() =&gt; dispatch({type:"DECREMENT"})}&gt;Decrease&lt;/button&gt;
+    &lt;/div&gt;
+  );
+}
+</code>
+
+<div class="note">
+<b>Explanation:</b>
+<ul>
+<li><b>useSelector()</b> → Read state from store</li>
+<li><b>useDispatch()</b> → Send actions</li>
+<li><b>dispatch()</b> → Triggers reducer</li>
+<li>Best for <b>large enterprise apps</b></li>
+</ul>
+</div>
+
+<hr>
+
+<h2>Comparison Table</h2>
+<table>
+<tr><th>Feature</th><th>useState</th><th>Context</th><th>Redux</th></tr>
+<tr><td>Scope</td><td>Local</td><td>Global</td><td>Global</td></tr>
+<tr><td>Complexity</td><td>Low</td><td>Medium</td><td>High</td></tr>
+<tr><td>Best For</td><td>Small Apps</td><td>Medium Apps</td><td>Large Apps</td></tr>
+<tr><td>Boilerplate</td><td>Minimal</td><td>Medium</td><td>High</td></tr>
+</table>
+
+<h2>Recommended Teaching Flow</h2>
+<ul>
+<li>Teach <b>useState</b> first</li>
+<li>Then introduce <b>Context API</b></li>
+<li>Finally explain <b>Redux architecture</b></li>
+</ul>
+
+</body>
+</html>
