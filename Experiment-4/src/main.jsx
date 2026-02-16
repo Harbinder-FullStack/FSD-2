@@ -9,14 +9,9 @@ import { store } from "./store/Store.jsx"
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    {/* <CounterContextProvider>
-      <App />
-    </CounterContextProvider> */}
-  
      <Provider store={store}>
-      <App />
+        <App />
     </Provider>
   </StrictMode>
-  
   ,
 )

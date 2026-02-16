@@ -2,6 +2,7 @@ import { TextField, Button, Container, Typography } from '@mui/material';
 import { useState } from 'react';
 
 export default function Form() {
+  
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState({});
@@ -20,10 +21,12 @@ export default function Form() {
 
     if(e.target.checkValidity()){
          alert("Form valid!");
+         console.log("Form valid!");
     }
     
     if(validate())
       alert('Form submitted successfully');
+      console.log('Form submitted successfully');
   }
 
   return (
@@ -43,7 +46,7 @@ export default function Form() {
             helperText={errors.email}
         />
 
-        <TextField type="password" value={password} required 
+        <TextField type="password" value={password}  required
             onChange={e => setPassword(e.target.value)}
 
             label="Password"
@@ -56,6 +59,7 @@ export default function Form() {
         />
           <Button variant="contained" type="submit" >Login</Button>
       </form>
+
     </Container>
   );
 }

@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from "react-redux"; //npm install redux react-redux
+import Box from "@mui/material/Box";
 
 export default function CounterReduxParent(props) {
     // useSelector : to read state from the Redux store
@@ -8,7 +9,7 @@ export default function CounterReduxParent(props) {
   const dispatch = useDispatch();
 
   return (
-    <div>
+    <Box sx={{ bgcolor: '#fcdfcf', height: '100px' }} >
       <h3>{props.cno} : Gloabl State (Redux) Count: {count}</h3>
 
       <button onClick={() => dispatch({ type: "INCREMENT" })}>
@@ -18,7 +19,7 @@ export default function CounterReduxParent(props) {
       <button onClick={() => dispatch({ type: "DECREMENT" })}>
         Decrease
       </button>
-    </div>
+    </Box>
   );
 }
 
