@@ -1,0 +1,41 @@
+# Project Setup
+cd  FSD-2
+mkdir backend  
+cd backend
+mkdir rest-api-lab
+cd rest-api-lab/
+   python3 -m venv virenv
+   source virenv/bin/activate
+   pip install flask
+   ls -la
+   pip freeze > requirements.txt
+
+#Create files
+    app.py
+    run.py
+
+# Start backend server
+python3 run.py 
+
+
+
+## CLI Commands : REST APIs ##
+
+Create Student (POST)
+curl -X POST http://localhost:5000/students \
+-H "Content-Type: application/json" \
+-d '{"name":"John","age":22}'
+
+Get All Students (GET)
+curl http://localhost:5000/students
+
+Get Single Student (GET by ID)
+curl http://localhost:5000/students/1
+
+Update Student (PUT)
+curl -X PUT http://localhost:5000/students/1 \
+-H "Content-Type: application/json" \
+-d '{"name":"John Updated","age":25}'
+
+Delete Student (DELETE)
+curl -X DELETE http://localhost:5000/students/1
