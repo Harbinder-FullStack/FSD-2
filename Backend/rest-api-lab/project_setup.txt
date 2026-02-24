@@ -6,7 +6,7 @@ mkdir rest-api-lab
 cd rest-api-lab/
    python3 -m venv virenv
    source virenv/bin/activate
-   pip install flask
+   pip install flask gunicorn
    ls -la
    pip freeze > requirements.txt
 
@@ -14,8 +14,14 @@ cd rest-api-lab/
     app.py
     run.py
 
+
+Correct way to start Flask server
+# pip install  gunicorn
+# pip freeze > requirements.txt
+
 # Start backend server
-python3 run.py 
+# gunicorn --bind 0.0.0.0:PORT {script_filename}:{flask_object}
+gunicorn --bind 0.0.0.0:5000 run:app
 
 
 
