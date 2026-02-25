@@ -1,16 +1,28 @@
-# React + Vite
+# MUI Login Form Testing (Vite + Vitest)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Install Testing Dependencies
 
-Currently, two official plugins are available:
+npm install --save-dev vitest @testing-library/react @testing-library/jest-dom jsdom
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Update vite.config.js
 
-## React Compiler
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+export default defineConfig({
+  plugins: [react()],
+  test: {
+    environment: "jsdom",
+    globals: true
+  }
+})
 
-## Expanding the ESLint configuration
+## Run Tests
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+npx vitest
+OR
+npx vitest run
+
+## Coverage
+
+npx vitest run --coverage
